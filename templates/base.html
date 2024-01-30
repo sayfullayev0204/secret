@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>maktab</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <div class="scrollToTop-btn">
+    <i class="fas fa-angle-up"></i>
+  </div>
+
+  <header style="background-color: rgb(0, 0, 0);">
+    <a href="{% url 'app:index' %}" class="brand">BIO OLAM</a>
+    <div class="menu-btn" style="background-color: cornsilk;"></div>
+    <div class="navigation">
+      <a href="#main">Biz haqimizda</a>
+      <a href="#about">Kurslar</a>
+      <a href="#contact">Biz bilan bog'lanish</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'signout' %}" >Chiqish</a>
+      {% else %}
+      <a href="/accounts/login/" >Login</a><a href="/accounts/register/" >Register</a>
+      {% endif %}
+    </div>
+</header>
+
+  <script src="{% static 'app.js' %}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+
+{% block content %}
+{% endblock content %}

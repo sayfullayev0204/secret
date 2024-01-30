@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <section class="about" id="about" style="background-color: #081b29; ">
+    <div class="title reveal">
+      <div class="section-title" style="color: azure;">{{fan.Fan_nomi}} fani</div>
+    </div>
+    <div class="content">
+      <div class="column col-left reveal">
+        <div class="img-card">
+          <img src="{{fan.Ustoz_rasmi.url}}" style="border-radius: 30px;">
+        </div>
+        <div style="text-align: center; color: white;">
+          <h2>O'qtuvchi: {{fan.Ustoz}}</h2>
+          <h5>{{fan.Malumot}}</h5>
+        </div>
+      </div>
+      <div class="column col-right reveal">
+      <h1 style="color: ghostwhite;">Mavzular</h1>
+        {% for vazifa in vazifalar %}
+        <div style="font-size: 30px;">
+          <h4><a href="{% url 'app:vazifa_detail' vazifa.id %}" style="text-decoration: none;">{{ vazifa.nomi }}</a></h4>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

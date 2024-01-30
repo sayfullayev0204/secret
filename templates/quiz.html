@@ -1,0 +1,92 @@
+<!-- quiz.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            background-color: #102439;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        fieldset {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz App</h1>
+        <form method="post" action="{% url 'app:submit_quiz' vazifa.id%}">
+            {% csrf_token %}
+            
+            {% for question in questions %}
+                <fieldset>
+                    <h2>{{ question.text }}</h2>
+                    
+                    {% for answer in question.answer_set.all %}
+                        <div class="form-check">
+
+                            <label class="form-check-label" for="answer_{{ answer.id }}">
+                                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="answer_{{ answer.id }}" value="{{ answer.id }}"> {{ answer.text }}
+                                <img src="" alt="">
+                            </label>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+            {% endfor %}
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock %}

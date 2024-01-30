@@ -1,0 +1,11 @@
+<!-- bolimlar_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>All Bolimlar</h2>
+  <ul>
+    {% for bolim in bolimlar_list %}
+      <li><a href="{% url 'app:bolim_detail' bolim.id %}">{{ bolim.Bolim }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
